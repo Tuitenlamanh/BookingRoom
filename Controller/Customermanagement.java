@@ -29,11 +29,11 @@ public class Customermanagement implements Action<Customer> {
         boolean check = false;
         String id;
         do{
-            System.out.println("Nhap id customer: ");
+            System.out.println("Enter ID Customer: ");
             id = s.nextLine();
             for (int i = 0; i < items.size(); i++) {
                 if((items.get(i).getId()).equals(id)){
-                    System.out.println("Id da ton tai, nhap id moi");
+                    System.out.println("ID already exists, please enter another ID!");
                     check = true;
                 }
                 else{
@@ -42,20 +42,20 @@ public class Customermanagement implements Action<Customer> {
             }
         }while(check);
         cus.setId(id);
-        System.out.println("Nhap ten: ");
+        System.out.println("Enter name of customer: ");
         cus.setFullame(s.nextLine());
-        System.out.println("Nhap so dien thoai: ");
+        System.out.println("Enter phone number of customer: ");
         cus.setPhone(s.nextLine());
-        System.out.println("Nhap email: ");
+        System.out.println("Enter email of customer: ");
         cus.setEmail(s.nextLine());
-        System.out.println("Nhap ngay thang nam sinh: ");
+        System.out.println("Enter date of customer: ");
         SimpleDateFormat sdate = new SimpleDateFormat("dd/MM/yyyy");
                  try {
                   cus.setDoB(sdate.parse(s.nextLine()));
                  } catch (ParseException ex) {
                   Logger.getLogger(BookingRoommanagement.class.getName()).log(Level.SEVERE, null, ex);
                  }
-        System.out.println("Nhap dia chi: ");
+        System.out.println("Enter address of customer: ");
         cus.setAddress(s.nextLine());
         return cus;
     }
@@ -63,40 +63,43 @@ public class Customermanagement implements Action<Customer> {
     @Override
     public boolean editItem(ArrayList<Customer> items) {
         Scanner s = new Scanner(System.in);
-        System.out.println("Chon ID can sua");
+        System.out.println("Select an ID to edit: ");
         String id = s.nextLine();
         for (int i = 0; i < items.size(); i++) {
             Customer cus = items.get(i);
             if(items.get(i).getId().equals(id)){
                 boolean check = true;
                 while(check){
-                    System.out.println("1. Edit name");
-                    System.out.println("2. Edit so dien thoai");
-                    System.out.println("3. Edit email");
-                    System.out.println("4. Edit so dia chi");
-                    System.out.println("5. Edit ngay thang nam sinh");
-                    System.out.println("6. Exit");
-                    System.out.print("Chon chuc nang ban muon: ");
+                    System.out.println("========== Select the function you want to edit ==========");
+                    System.out.println("|          1. Edit your name                             |");
+                    System.out.println("|          2. Edit your phone number                     |");
+                    System.out.println("|          3. Edit yoour email                           |");
+                    System.out.println("|          4. Edit your address                          |");
+                    System.out.println("|          5. Edit your date of birth                    |");
+                    System.out.println("|          6. Exit                                       |");
+                    System.out.println("==========================================================");
+                    System.out.print("Please choose a function: ");
                     int choose = s.nextInt();
+                    s = new Scanner(System.in);
                     switch(choose){
                         case 1:
-                            System.out.println("Edit name");
+                            System.out.println("Edit your name");
                             cus.setFullame(s.nextLine());
                             break;
                         case 2:
-                            System.out.println("Edit so dien thoai");
+                            System.out.println("Edit your phone number");
                             cus.setPhone(s.nextLine());
                             break;
                         case 3:
-                            System.out.println("Edit email");
+                            System.out.println("Edit your email");
                             cus.setEmail(s.nextLine());
                             break;
                         case 4:
-                            System.out.println("Edit dia chi");
+                            System.out.println("Edit your address");
                             cus.setAddress(s.nextLine());
                             break;
                         case 5:
-                            System.out.println("Edit ngay thang nam sinh");
+                            System.out.println("Edit your date of birth");
                             SimpleDateFormat sdate = new SimpleDateFormat("dd/MM/yyyy");
                             try {
                                 cus.setDoB(sdate.parse(s.nextLine()));
@@ -107,7 +110,7 @@ public class Customermanagement implements Action<Customer> {
                             check = false;
                             break;
                         default:
-                            System.out.println("Het lua chon");
+                            System.out.println("You have entered wrong, please re-enter!");
                             break;
                     }
                 }
@@ -120,7 +123,7 @@ public class Customermanagement implements Action<Customer> {
     public boolean deleteItem(ArrayList<Customer> items) {
         Scanner s = new Scanner(System.in);
 //        Bill bill = new Bill();
-        System.out.println("Chon ID can xoa");
+        System.out.println("Choose an ID to delete!");
         String id = s.nextLine();
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).getId().equals(id)){
@@ -128,14 +131,14 @@ public class Customermanagement implements Action<Customer> {
                 return true;
             }
         }
-        System.out.println("Khong tim thay ID");
+        System.out.println("Can't find the ID!");
         return false;
     }
 
     @Override
     public void show(ArrayList<Customer> items) {
         for (int i = 0; i < items.size(); i++) {
-            System.out.println(items.get(i).getId()+"\t"+items.get(i).getFullame());
+            System.out.println(items.get(i).getId()+"\t"+items.get(i).getFullame()+"\t"+items.get(i).getPhone()+"\t"+items.get(i).getEmail()+"\t"+items.get(i).getAddress()+"\t"+items.get(i).getDoB());
         }
     }
     

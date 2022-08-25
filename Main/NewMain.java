@@ -88,7 +88,7 @@ public class NewMain {
             System.out.println("|            7. Service Management              |");
             System.out.println("|            8. Exit                            |");
             System.out.println("=================================================");
-            System.out.println("Please choose a function: ");
+            System.out.print("Please choose a function: ");
             int choose = s.nextInt();
             switch(choose){
                 case 1:{
@@ -140,7 +140,7 @@ public class NewMain {
             System.out.println("|            4. Show bill               |");
             System.out.println("|            5. Exit                    |");
             System.out.println("=========================================");
-            System.out.println("Please choose a function: ");
+            System.out.print("Please choose a function: ");
             int choose = s.nextInt();
             switch(choose){
             case 1:{
@@ -180,7 +180,7 @@ public class NewMain {
             System.out.println("|          4. Show room               |");
             System.out.println("|          5. Exit                    |");
             System.out.println("=======================================");
-            System.out.println("Please choose a function: ");
+            System.out.print("Please choose a function: ");
             int choose = s.nextInt();
             switch(choose){
             case 1:{
@@ -220,7 +220,7 @@ public class NewMain {
             System.out.println("|            4. Show room type               |");
             System.out.println("|            5. Exit                         |");
             System.out.println("==============================================");
-            System.out.println("Please choose a function: ");
+            System.out.print("Please choose a function: ");
             int choose = s.nextInt();
             switch(choose){
             case 1:{
@@ -260,7 +260,7 @@ public class NewMain {
             System.out.println("|            4. Show service               |");
             System.out.println("|            5. Exit                       |");
             System.out.println("============================================");
-            System.out.println("Please choose a function: ");
+            System.out.print("Please choose a function: ");
             int choose = s.nextInt();
             switch(choose){
             case 1:{
@@ -300,7 +300,7 @@ public class NewMain {
             System.out.println("|            4. Show                       |");
             System.out.println("|            5. Exit                       |");
             System.out.println("============================================");
-            System.out.println("Please choose a function: ");
+            System.out.print("Please choose a function: ");
             int choose = s.nextInt();
             switch(choose){
             case 1:{
@@ -340,7 +340,7 @@ public class NewMain {
             System.out.println("|            4. Show customer               |");
             System.out.println("|            5. Exit                        |");
             System.out.println("=============================================");
-            System.out.println("Please choose a function: ");
+            System.out.print("Please choose a function: ");
             int choose = s.nextInt();
             switch(choose){
             case 1:{

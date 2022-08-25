@@ -30,7 +30,7 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
     public boolean editItem(ArrayList<Bill> item1, ArrayList<BookingRoom> item2) {
         Scanner s = new Scanner(System.in);
 //        Bill bill = new Bill();
-        System.out.println("Chon ID can sua");
+        System.out.println("Select an ID to edit");
         String id = s.nextLine();
         for (int i = 0; i < item1.size(); i++) {
             if(item1.get(i).getBillID().equals(id)){
@@ -44,7 +44,7 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
                             check = false;
                         }
                     else{
-                    System.out.println("Khong co bill nay. Vui long nhap lai!!!");
+                    System.out.println("Can't find the ID!");
                     check = true;
                         }
                     }
@@ -59,7 +59,7 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
     public boolean deleteItem(ArrayList<Bill> items) {
         Scanner s = new Scanner(System.in);
 //        Bill bill = new Bill();
-        System.out.println("Chon ID can xoa");
+        System.out.println("Select an ID to delete");
         String id = s.nextLine();
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).getBillID().equals(id)){
@@ -82,10 +82,10 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
     public Bill AddItem(ArrayList<Bill> item1, ArrayList<BookingRoom> item2) {
         Bill bill = new Bill();
         Scanner s = new Scanner(System.in);
-        System.out.println("Nhap id: ");
+        System.out.println("Enter ID: ");
         String id = s.nextLine();
         bill.setBillID(id);
-        System.out.println("Nhap id bookingroom: ");
+        System.out.println("Enter ID Booking Room: ");
         String bookingid = s.nextLine();
         int counttype = 0;
         Date Startdate, Enddate;
@@ -102,7 +102,7 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
             }
         }
         if(counttype==item2.size()){
-            System.out.println("Khong co trong danh sach");
+            System.out.println("Can't find the ID!");
         }
         Double Totalmoney;
         // Convert `String` to `Date`

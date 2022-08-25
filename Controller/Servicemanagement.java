@@ -24,11 +24,11 @@ public class Servicemanagement implements Action<Service> {
         boolean check = false;
         String id;
         do{
-            System.out.println("Nhap id service: ");
+            System.out.println("Enter ID of Service:  ");
             id = s.nextLine();
             for (int i = 0; i < items.size(); i++) {
                 if((items.get(i).getSerID()).equals(id)){
-                    System.out.println("Id da ton tai, nhap id moi");
+                    System.out.println("ID already exists, please enter another ID!");
                     check = true;
                 }
                 else{
@@ -37,7 +37,7 @@ public class Servicemanagement implements Action<Service> {
             }
         }while(check);
         services.setSerID(id);
-        System.out.println("Nhap ten service: ");
+        System.out.println("Enter name of service: ");
         services.setSerName(s.nextLine());
         System.out.println("Enter price service: ");
         services.setPrices(s.nextDouble());
@@ -46,17 +46,19 @@ public class Servicemanagement implements Action<Service> {
     @Override
     public boolean editItem(ArrayList<Service> items) {
         Scanner s = new Scanner(System.in);
-        System.out.println("Chon ID can sua");
+        System.out.println("Select an ID to edit: ");
         String id = s.nextLine();
         for (int i = 0; i < items.size(); i++) {
             Service ser = items.get(i);
             if(items.get(i).getSerID().equals(id)){
                 boolean check = true;
                 while(check){
-                    System.out.println("1. Edit name");
-                    System.out.println("2. Edit price");
-                    System.out.println("3. Exit");
-                    System.out.print("Chon chuc nang ban muon: ");
+                    System.out.println("========== Select the function to edit ==========");
+                    System.out.println("|          1. Edit name                         |");
+                    System.out.println("|          2. Edit price                        |");
+                    System.out.println("|          3. Exit                              |");
+                    System.out.println("=================================================");
+                    System.out.print("Choose an function to edit: ");
                     int choose = s.nextInt();
                     s = new Scanner(System.in);
                     switch(choose){
@@ -72,7 +74,7 @@ public class Servicemanagement implements Action<Service> {
                             check = false;
                             break;
                         default:
-                            System.out.println("Het lua chon");
+                            System.out.println("You have entered wrong, please re-enter!");
                             break;
                     }
                 }
@@ -85,7 +87,7 @@ public class Servicemanagement implements Action<Service> {
     public boolean deleteItem(ArrayList<Service> items) {
         Scanner s = new Scanner(System.in);
 //        Bill bill = new Bill();
-        System.out.println("Chon ID can xoa");
+        System.out.println("Select the ID to delete: ");
         String id = s.nextLine();
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).getSerID().equals(id)){
@@ -93,7 +95,7 @@ public class Servicemanagement implements Action<Service> {
                 return true;
             }
         }
-        System.out.println("Khong tim thay ID");
+        System.out.println("Can't find the ID!");
         return false;
     }
 

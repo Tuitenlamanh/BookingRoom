@@ -26,9 +26,9 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
     public Object AddItem(ArrayList<BookingRoom> item1, ArrayList<Customer> item2, ArrayList<Room> item3) {
         BookingRoom book = new BookingRoom();
         Scanner s = new Scanner(System.in);
-        System.out.println("Nhap id booking: ");
+        System.out.println("Enter ID booking: ");
         book.setBrid(s.nextLine());
-        System.out.println("Nhap customer id:  ");
+        System.out.println("Enter ID customer:  ");
         String customerid = s.nextLine();
         int countid = 0;
         for (int i = 0; i < item2.size(); i++){
@@ -40,9 +40,9 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
             }
         }
         if(countid==item2.size()){
-            System.out.println("Khong co khach hang trong danh sach");
+            System.out.println("Can't find the ID!");
         }
-        System.out.println("Nhap phong: ");
+        System.out.println("Enter ID room: ");
         String roomid = s.nextLine();
         int countroom = 0;
         for (int i = 0; i < item3.size(); i++){
@@ -54,16 +54,16 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
             }
         }
         if(countroom==item2.size()){
-            System.out.println("Khong co phong");
+            System.out.println("Can't find the ID!");
         }
-        System.out.println("Nhap ngay nhan phong");
+        System.out.println("Enter start date");
             SimpleDateFormat sdate = new SimpleDateFormat("dd/MM/yyyy");
                  try {
                   book.setStartDate(sdate.parse(s.nextLine()));
                  } catch (ParseException ex) {
                   Logger.getLogger(BookingRoommanagement.class.getName()).log(Level.SEVERE, null, ex);
                  }
-        System.out.println("Nhap ngay tra phong");
+        System.out.println("Enter end date");
             SimpleDateFormat edate = new SimpleDateFormat("dd/MM/yyyy");
                  try {
                   book.setStartDate(edate.parse(s.nextLine()));
@@ -77,20 +77,21 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
     public boolean editItem(ArrayList<BookingRoom> item1, ArrayList<Customer> item2, ArrayList<Room> item3) {
         BookingRoom book = new BookingRoom();
         Scanner s = new Scanner(System.in);
-        System.out.println("Nhap id: ");
+        System.out.println("Enter ID booking room: ");
         String roomid = s.nextLine();
         for (int i = 0; i < item1.size(); i++) {
             if(roomid.equals(item1.get(i).getBrid())){
                 boolean check = true;
                 while(check){
-                    System.out.println("Ban can sua gi?");
-                    System.out.println("1. Khach hang");
-                    System.out.println("2. Phong");
-                    System.out.println("3. Exit");
+                    System.out.println("========== Select an option to edit ==========");
+                    System.out.println("|          1. Customer                       |");
+                    System.out.println("|          2. Room                           |");
+                    System.out.println("|          3. Exit                           |");
+                    System.out.println("==============================================");
                     int a = s.nextInt();
                     switch(a){
                         case 1: 
-                            System.out.println("Nhap lai id khach hang");
+                            System.out.println("Enter ID customer: ");
                             s = new Scanner(System.in);
                             String cusid = s.nextLine();
                             int countcus = 0;
@@ -104,11 +105,11 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
                                 }
                             }
                             if(countcus==item2.size()){
-                                System.out.println("Khong co khach hang trong danh sach!");
+                                System.out.println("Not found customer in the list");
                             }
                             break;
                         case 2:
-                            System.out.println("Nhap lai id phong");
+                            System.out.println("Enter ID room: ");
                             String serid = s.nextLine();
                             int countser = 0;
                             for (int j = 0; j < item3.size(); j++){
@@ -121,13 +122,13 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
                                 }
                             }
                             if(countser==item2.size()){
-                                System.out.println("Khong co phong trong danh sach");
+                                System.out.println("Not found room in the list");
                             }
                         case 3:
                             check = false;
                             break;
                         default:
-                            System.out.println("Het");
+                            System.out.println("You have entered wrong, please re-enter!");
                             break;
                     }
                 }
@@ -142,7 +143,7 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
     public boolean deleteItem(ArrayList<BookingRoom> items) {
         Scanner s = new Scanner(System.in);
 //        Bill bill = new Bill();
-        System.out.println("Chon ID can xoa");
+        System.out.print("Select an ID to delete: ");
         String id = s.nextLine();
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).getBrid().equals(id)){
@@ -150,16 +151,14 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
                 return true;
             }
         }
-        System.out.println("Khong tim thay ID");
+        System.out.println("Can't find the ID!");
         return false;
     }
 
     @Override
     public void show(ArrayList<BookingRoom> items) {
         for (int i = 0; i < items.size(); i++) {
-            System.out.println(items.get(i).getBrid());
-            System.out.println(items.get(i).getCustomer().getFullame());
-            System.out.println(items.get(i).getRoom().getroomID());
+            System.out.println(items.get(i).getBrid()+"\t"+items.get(i).getCustomer().getFullame()+"\t"+items.get(i).getRoom().getroomtype().gettypeName()+"\t"+items.get(i).getStartDate()+"\t"+items.get(i).getEndDate());
         }
     }
 

@@ -23,9 +23,9 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
     public Room AddItem(ArrayList<Room> item1, ArrayList<Roomtype> item2, ArrayList<Service> item3) {
         Room room = new Room();
         Scanner s = new Scanner(System.in);
-        System.out.println("Nhap id: ");
+        System.out.println("Enter ID: ");
         room.setroomID(s.nextLine());
-        System.out.println("Nhap roomtype id:  ");
+        System.out.println("Enter Room Type ID:  ");
         String roomtypeid = s.nextLine();
         int counttype = 0;
         for (int i = 0; i < item2.size(); i++){
@@ -37,9 +37,9 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
             }
         }
         if(counttype==item2.size()){
-            System.out.println("Khong co trong danh sach");
+            System.out.println("Can't find the ID!");
         }
-        System.out.println("Nhap loai dich vu: ");
+        System.out.println("Enter the service: ");
         String serid = s.nextLine();
         int countser = 0;
         for (int i = 0; i < item3.size(); i++){
@@ -51,7 +51,7 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
             }
         }
         if(countser==item2.size()){
-            System.out.println("Thang Huy bi len don roi!");
+            System.out.println("Can't find the ID!");
         }
         return room;
     }
@@ -65,7 +65,7 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
     public boolean deleteItem(ArrayList<Room> items) {
         Scanner s = new Scanner(System.in);
 //        Bill bill = new Bill();
-        System.out.println("Chon ID can xoa");
+        System.out.println("Select an ID to delete: ");
         String id = s.nextLine();
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).getroomID().equals(id)){
@@ -73,7 +73,7 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
                 return true;
             }
         }
-        System.out.println("Khong tim thay ID");
+        System.out.println("Can't find the ID");
         return false;
     }
 
@@ -88,16 +88,17 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
     public boolean editItem(ArrayList<Room> item1, ArrayList<Roomtype> item2, ArrayList<Service> item3) {
         Room room = new Room();
         Scanner s = new Scanner(System.in);
-        System.out.println("Nhap id: ");
+        System.out.println("Enter ID: ");
         String roomid = s.nextLine();
         for (int i = 0; i < item1.size(); i++) {
             if(roomid.equals(item1.get(i).getroomID())){
                 boolean check = true;
                 while(check){
-                    System.out.println("Ban can sua gi?");
-                    System.out.println("1. Loai phong");
-                    System.out.println("2. Dich vu");
-                    System.out.println("3. Exit");
+                    System.out.println("==== What do you want to edit? ====");
+                    System.out.println("|    1. Room type                 |");
+                    System.out.println("|    2. Service                   |");
+                    System.out.println("|    3. Exit                      |");
+                    System.out.println("===================================");
                     
                     int a = s.nextInt();
                     switch(a){
@@ -108,7 +109,7 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
                             int counttype = 0;
                             for (int j = 0; j < item2.size(); j++){
                                 if (roomtypeid.equals(item2.get(j).gettypeID())) {
-                                    room.setroomtype(item2.get(j));
+                                    item1.get(i).setroomtype(item2.get(j));
                                     break;
                                 }
                                 else{
@@ -116,7 +117,7 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
                                 }
                             }
                             if(counttype==item2.size()){
-                                System.out.println("Can't find the ID!");
+                                System.out.println("Can't find the ID of Room type!");
                             }
                             break;
                         case 2:
@@ -126,7 +127,7 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
                             int countser = 0;
                             for (int j = 0; j < item3.size(); j++){
                                 if (serid.equals(item3.get(j).getSerID())) {
-                                    room.setservice(item3.get(j));
+                                    item1.get(i).setservice(item3.get(j));
                                     break;
                                 }
                                 else{
@@ -134,13 +135,13 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
                                 }
                             }
                             if(countser==item2.size()){
-                                System.out.println("Khong co dich vu trong danh sach");
+                                System.out.println("Can't fine the ID of Service!");
                             }
                         case 3:
                             check = false;
                             break;
                         default:
-                            System.out.println("Het");
+                            System.out.println("You have entered wrong, please re-enter!");
                             break;
                     }
                 }
