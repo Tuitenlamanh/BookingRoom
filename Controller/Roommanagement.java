@@ -80,7 +80,7 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
     @Override
     public void show(ArrayList<Room> items) {
         for (int i = 0; i < items.size(); i++) {
-            System.out.printf("| %-15s | %-15s |%n", items.get(i).getroomtype().gettypeName(), items.get(i).getservice().getSerName());
+            System.out.printf("| %-3s | %-20s | %-20s |%n",i+1, items.get(i).getroomtype().gettypeName(), items.get(i).getservice().getSerName());
         }
 }
 

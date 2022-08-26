@@ -102,7 +102,7 @@ public class Servicemanagement implements Action<Service> {
     @Override
     public void show(ArrayList<Service> items) {
         for (int i = 0; i < items.size(); i++) {
-            System.out.println(items.get(i).getSerID()+"\t"+items.get(i).getSerName()+"\t"+items.get(i).getPrices());
+            System.out.printf("| %-3s | %-20s | %-20s | %-20s |%n",i+1,items.get(i).getSerID(),items.get(i).getSerName(),items.get(i).getPrices());
         }
     }
 

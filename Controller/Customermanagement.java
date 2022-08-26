@@ -138,7 +138,7 @@ public class Customermanagement implements Action<Customer> {
     @Override
     public void show(ArrayList<Customer> items) {
         for (int i = 0; i < items.size(); i++) {
-            System.out.println(items.get(i).getId()+"\t"+items.get(i).getFullame()+"\t"+items.get(i).getPhone()+"\t"+items.get(i).getEmail()+"\t"+items.get(i).getAddress()+"\t"+items.get(i).getDoB());
+            System.out.printf("| %-3s | %-20s | %-20s | %-30s | %-20s | %-20s | %-40s |%n",i+1,items.get(i).getId(),items.get(i).getFullname(),items.get(i).getPhone(),items.get(i).getEmail(),items.get(i).getAddress(),items.get(i).getDoB());
         }
     }
     

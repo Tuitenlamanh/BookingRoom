@@ -14,7 +14,7 @@ import java.util.Date;
 public class Person {
 
     private String id;
-    private String fullame;
+    private String fullname;
     private String phone;
     private String email;
 
@@ -29,12 +29,12 @@ public class Person {
         this.id = id;
     }
 
-    public String getFullame() {
-        return fullame;
+    public String getFullname() {
+        return fullname;
     }
 
     public void setFullame(String fullame) {
-        this.fullame = fullame;
+        this.fullname = fullame;
     }
 
     public String getPhone() {

@@ -103,7 +103,7 @@ public class Roomtypemanagement implements Action<Roomtype> {
     @Override
     public void show(ArrayList<Roomtype> items) {
         for (int i = 0; i < items.size(); i++) {
-            System.out.println(items.get(i).gettypeID()+"   "+items.get(i).gettypeName()+"   "+items.get(i).getprice());
+            System.out.printf("| %-3s | %-20s | %-20s | %-20s |%n",i+1,items.get(i).gettypeID(),items.get(i).gettypeName(),items.get(i).getprice());
         }
     }
     

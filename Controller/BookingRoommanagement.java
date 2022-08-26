@@ -66,7 +66,7 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
         System.out.println("Enter end date");
             SimpleDateFormat edate = new SimpleDateFormat("dd/MM/yyyy");
                  try {
-                  book.setStartDate(edate.parse(s.nextLine()));
+                  book.setEndDate(edate.parse(s.nextLine()));
                  } catch (ParseException ex) {
                   Logger.getLogger(BookingRoommanagement.class.getName()).log(Level.SEVERE, null, ex);
                  }
@@ -82,6 +82,7 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
         for (int i = 0; i < item1.size(); i++) {
             if(roomid.equals(item1.get(i).getBrid())){
                 boolean check = true;
+                BookingRoom book1 = item1.get(i);
                 while(check){
                     System.out.println("========== Select an option to edit ==========");
                     System.out.println("|          1. Customer                       |");
@@ -91,13 +92,13 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
                     int a = s.nextInt();
                     switch(a){
                         case 1: 
-                            System.out.println("Enter ID customer: ");
                             s = new Scanner(System.in);
+                            System.out.println("Enter ID customer: ");
                             String cusid = s.nextLine();
                             int countcus = 0;
                             for (int j = 0; j < item2.size(); j++){
                                 if (cusid.equals(item2.get(j).getId())) {
-                                    book.setCustomer(item2.get(j));
+                                    book1.setCustomer(item2.get(j));
                                     break;
                                 }
                                 else{
@@ -109,12 +110,13 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
                             }
                             break;
                         case 2:
+                            s = new Scanner(System.in);
                             System.out.println("Enter ID room: ");
                             String serid = s.nextLine();
                             int countser = 0;
                             for (int j = 0; j < item3.size(); j++){
                                 if (serid.equals(item3.get(j).getroomID())) {
-                                    book.setRoom(item3.get(j));
+                                    book1.setRoom(item3.get(j));
                                     break;
                                 }
                                 else{
@@ -158,7 +160,7 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
     @Override
     public void show(ArrayList<BookingRoom> items) {
         for (int i = 0; i < items.size(); i++) {
-            System.out.println(items.get(i).getBrid()+"\t"+items.get(i).getCustomer().getFullame()+"\t"+items.get(i).getRoom().getroomtype().gettypeName()+"\t"+items.get(i).getStartDate()+"\t"+items.get(i).getEndDate());
+            System.out.printf("| %-3s | %-20s | %-30s | %-30s | %-40s | %-40s |%n",i+1,items.get(i).getBrid(),items.get(i).getCustomer().getFullname(),items.get(i).getRoom().getroomtype().gettypeName(),items.get(i).getStartDate(),items.get(i).getEndDate());
         }
     }
 

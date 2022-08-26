@@ -196,6 +196,7 @@ public class NewMain {
                 break;
             }
             case 4:{
+                System.out.printf("| %-3s | %-20s | %-20s |%n","STT","Type","Service");
                 roomm.show(listroom);
                 break;
             }
@@ -236,6 +237,7 @@ public class NewMain {
                 break;
             }
             case 4:{
+                System.out.printf("| %-3s | %-20s | %-20s | %-20s |%n","STT","Room type ID","Type name","Price");
                 roomtypem.show(listroomtype);
                 break;
             }
@@ -276,6 +278,7 @@ public class NewMain {
                 break;
             }
             case 4:{
+                System.out.printf("| %-3s | %-20s | %-20s | %-20s |%n","STT","ID Service","Service Name","Price");
                 servicem.show(listservice);
                 break;
             }
@@ -294,10 +297,10 @@ public class NewMain {
         boolean Menu = true;
         while(Menu){
             System.out.println("============ Booking Management ============");
-            System.out.println("|            1. Add                        |");
-            System.out.println("|            2. Edit                       |");
-            System.out.println("|            3. Delete                     |");
-            System.out.println("|            4. Show                       |");
+            System.out.println("|            1. Add Booking                |");
+            System.out.println("|            2. Edit Booking               |");
+            System.out.println("|            3. Delete Booking             |");
+            System.out.println("|            4. Show Booking               |");
             System.out.println("|            5. Exit                       |");
             System.out.println("============================================");
             System.out.print("Please choose a function: ");
@@ -308,7 +311,7 @@ public class NewMain {
                 break;
             }
             case 2:{
-                bookingm.editItem(listbooking);
+                bookingm.editItem(listbooking,listcustomer,listroom);
                 break;
             }
             case 3:{
@@ -316,6 +319,7 @@ public class NewMain {
                 break;
             }
             case 4:{
+                System.out.printf("| %-3s | %-20s | %-30s | %-30s | %-40s | %-40s |%n","STT","ID Booking","Name customer","Name type room","Start date","End date");
                 bookingm.show(listbooking);
                 break;
             }
@@ -356,6 +360,7 @@ public class NewMain {
                 break;
             }
             case 4:{
+                System.out.printf("| %-3s | %-20s | %-20s | %-30s | %-20s | %-20s | %-40s |%n","STT","ID","Fullname","Phone number","Email","Address","DoB");
                 cusm.show(listcustomer);
                 break;
             }

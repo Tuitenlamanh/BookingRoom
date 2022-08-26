@@ -82,10 +82,11 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
     public Bill AddItem(ArrayList<Bill> item1, ArrayList<BookingRoom> item2) {
         Bill bill = new Bill();
         Scanner s = new Scanner(System.in);
-        System.out.println("Enter ID: ");
+        System.out.println("Enter ID of Bill: ");
         String id = s.nextLine();
         bill.setBillID(id);
         System.out.println("Enter ID Booking Room: ");
+        s = new Scanner(System.in);
         String bookingid = s.nextLine();
         int counttype = 0;
         Date Startdate, Enddate;
