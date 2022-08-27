@@ -14,5 +14,5 @@ import java.util.ArrayList;
 public interface ActionBill<T1,T2> extends Action<T1> {
     public Object AddItem(ArrayList<T1> item1, ArrayList<T2> item2);
     public boolean editItem(ArrayList<T1> item1, ArrayList<T2> item2);
-    
+    public Double TotalMoney(ArrayList<T1> item1, ArrayList<T2> item2);
 }

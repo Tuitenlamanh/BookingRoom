@@ -148,7 +148,7 @@ public class NewMain {
                 break;
             }
             case 2:{
-                billm.editItem(listbill);
+                billm.editItem(listbill,listbooking);
                 break;
             }
             case 3:{
@@ -156,6 +156,7 @@ public class NewMain {
                 break;
             }
             case 4:{
+                System.out.printf("| %-3s | %-20s | %-20s | %-20s |%n","STT","Bill ID","Name Customer","Total");
                 billm.show(listbill);
                 break;
             }
@@ -360,7 +361,7 @@ public class NewMain {
                 break;
             }
             case 4:{
-                System.out.printf("| %-3s | %-20s | %-20s | %-30s | %-20s | %-20s | %-40s |%n","STT","ID","Fullname","Phone number","Email","Address","DoB");
+                System.out.printf("| %-3s | %-20s | %-20s | %-30s | %-50s | %-20s | %-40s |%n","STT","ID","Fullname","Phone number","Email","Address","DoB");
                 cusm.show(listcustomer);
                 break;
             }

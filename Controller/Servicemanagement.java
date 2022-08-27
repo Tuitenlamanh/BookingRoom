@@ -21,21 +21,22 @@ public class Servicemanagement implements Action<Service> {
     public Service AddItem(ArrayList<Service> items) {
         Service services = new Service();
         Scanner s = new Scanner(System.in);
-        boolean check = false;
-        String id;
-        do{
+        boolean check = true;
+        String id = null;
+        while(check){
             System.out.println("Enter ID of Service:  ");
             id = s.nextLine();
             for (int i = 0; i < items.size(); i++) {
                 if((items.get(i).getSerID()).equals(id)){
                     System.out.println("ID already exists, please enter another ID!");
                     check = true;
+                    break;
                 }
                 else{
                     check = false;
                 }
             }
-        }while(check);
+        }
         services.setSerID(id);
         System.out.println("Enter name of service: ");
         services.setSerName(s.nextLine());
@@ -65,10 +66,12 @@ public class Servicemanagement implements Action<Service> {
                         case 1:
                             System.out.println("Edit name");
                             ser.setSerName(s.nextLine());
+                            System.out.println("Edit successfully!");
                             break;
                         case 2:
                             System.out.println("Edit price");
                             ser.setPrices(s.nextDouble());
+                            System.out.println("Edit successfully!");
                             break;
                         case 3:
                             check = false;
@@ -92,6 +95,7 @@ public class Servicemanagement implements Action<Service> {
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).getSerID().equals(id)){
                 items.remove(i);
+                System.out.println("Deleted succesfully!");
                 return true;
             }
         }

@@ -26,21 +26,20 @@ public class Customermanagement implements Action<Customer> {
     public Customer AddItem(ArrayList<Customer> items) {
         Customer cus = new Customer();
         Scanner s = new Scanner(System.in);
-        boolean check = false;
-        String id;
-        do{
+        boolean check = true;
+        String id = null;
+        while(check){
             System.out.println("Enter ID Customer: ");
             id = s.nextLine();
+            check = false;
             for (int i = 0; i < items.size(); i++) {
                 if((items.get(i).getId()).equals(id)){
                     System.out.println("ID already exists, please enter another ID!");
                     check = true;
-                }
-                else{
-                    check = false;
+                    break;
                 }
             }
-        }while(check);
+        }
         cus.setId(id);
         System.out.println("Enter name of customer: ");
         cus.setFullame(s.nextLine());
@@ -85,18 +84,22 @@ public class Customermanagement implements Action<Customer> {
                         case 1:
                             System.out.println("Edit your name");
                             cus.setFullame(s.nextLine());
+                            System.out.println("Edit successfully!");
                             break;
                         case 2:
                             System.out.println("Edit your phone number");
                             cus.setPhone(s.nextLine());
+                            System.out.println("Edit successfully!");
                             break;
                         case 3:
                             System.out.println("Edit your email");
                             cus.setEmail(s.nextLine());
+                            System.out.println("Edit successfully!");
                             break;
                         case 4:
                             System.out.println("Edit your address");
                             cus.setAddress(s.nextLine());
+                            System.out.println("Edit successfully!");
                             break;
                         case 5:
                             System.out.println("Edit your date of birth");
@@ -106,6 +109,8 @@ public class Customermanagement implements Action<Customer> {
                             } catch (ParseException ex) {
                              Logger.getLogger(BookingRoommanagement.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                            System.out.println("Edit successfully!");
+                            break;
                         case 6:
                             check = false;
                             break;
@@ -128,6 +133,7 @@ public class Customermanagement implements Action<Customer> {
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).getId().equals(id)){
                 items.remove(i);
+                System.out.println("Deleted succesfully!");
                 return true;
             }
         }
@@ -138,7 +144,7 @@ public class Customermanagement implements Action<Customer> {
     @Override
     public void show(ArrayList<Customer> items) {
         for (int i = 0; i < items.size(); i++) {
-            System.out.printf("| %-3s | %-20s | %-20s | %-30s | %-20s | %-20s | %-40s |%n",i+1,items.get(i).getId(),items.get(i).getFullname(),items.get(i).getPhone(),items.get(i).getEmail(),items.get(i).getAddress(),items.get(i).getDoB());
+            System.out.printf("| %-3s | %-20s | %-20s | %-30s | %-50s | %-20s | %-40s |%n",i+1,items.get(i).getId(),items.get(i).getFullname(),items.get(i).getPhone(),items.get(i).getEmail(),items.get(i).getAddress(),items.get(i).getDoB());
         }
     }
     

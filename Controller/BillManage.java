@@ -7,6 +7,7 @@ package Controller;
 
 import Entity.Bill;
 import Entity.BookingRoom;
+import Entity.Service;
 import Interface.Action;
 import Interface.ActionBill;
 import java.text.ParseException;
@@ -34,21 +35,29 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
         String id = s.nextLine();
         for (int i = 0; i < item1.size(); i++) {
             if(item1.get(i).getBillID().equals(id)){
-                boolean check = false;
-                do{
+                boolean check = true;
+                while(check){
                     System.out.print("Enter Booking ID:");
                     String bookid =  s.nextLine();
                     for (int j = 0; j < item2.size(); j++) {
                         if(bookid.equals(item2.get(j).getBrid())){
+                            Bill bill = item1.get(i);
                             item1.get(i).setBook(item2.get(j));
+//                            Date Startdate = item2.get(i).getStartDate();
+//                            Date Enddate = item2.get(i).getEndDate();
+//                            long daysDiff = ChronoUnit.HOURS.between(Startdate.toInstant(), Enddate.toInstant());
+//                            System.out.println("The number of days between dates: " + daysDiff);
+//                            Double priceroomtype = item2.get(i).getRoom().getroomtype().getprice();
+//                            Double priceservice = item2.get(i).getRoom().getservice().getPrices();
+//                            bill.setTotalmoney(TotalMoney(priceroomtype,priceservice,daysDiff));            
                             check = false;
-                        }
-                    else{
-                    System.out.println("Can't find the ID!");
-                    check = true;
+                            break;
                         }
                     }
-                }while(check);
+                    if (check) {
+                        System.out.println("Can't find the ID!");
+                    }
+                }
             }
         }
         return false;
@@ -64,6 +73,8 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).getBillID().equals(id)){
                 items.remove(i);
+                System.out.println("Deleted succesfully!");
+                return true;
             }
         }
         return false;
@@ -73,7 +84,13 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
     @Override
     public void show(ArrayList<Bill> listBill) {
         for (int i = 0; i < listBill.size(); i++) {
-            System.out.println(listBill.get(i).getBillID());
+            Date Startdate = listBill.get(i).getBook().getStartDate();
+            Date Enddate = listBill.get(i).getBook().getEndDate();
+            long daysDiff = ChronoUnit.HOURS.between(Startdate.toInstant(), Enddate.toInstant());
+            Double priceroomtype = listBill.get(i).getBook().getRoom().getroomtype().getprice();
+            Double priceservice = listBill.get(i).getBook().getRoom().getservice().getPrices();
+            listBill.get(i).setTotalmoney(TotalMoney(priceroomtype,priceservice,daysDiff));
+            System.out.printf("| %-3s | %-20s | %-20s | %-20s |%n",i+1,listBill.get(i).getBillID(),listBill.get(i).getBook().getCustomer().getFullname(),listBill.get(i).getTotalmoney());
         }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -97,6 +114,9 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
                 Enddate = item2.get(i).getEndDate();
                 long daysDiff = ChronoUnit.HOURS.between(Startdate.toInstant(), Enddate.toInstant());
                 System.out.println("The number of days between dates: " + daysDiff);
+//                Double priceroomtype = item2.get(i).getRoom().getroomtype().getprice();
+//                Double priceservice = item2.get(i).getRoom().getservice().getPrices();
+//                bill.setTotalmoney(TotalMoney(priceroomtype,priceservice,daysDiff));
             }
             else{
                 counttype++;
@@ -105,33 +125,6 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
         if(counttype==item2.size()){
             System.out.println("Can't find the ID!");
         }
-        Double Totalmoney;
-        // Convert `String` to `Date`
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-        // Calculate the number of days between dates
-//        long timeDiff = Math.abs(Startdate.getTime() - Enddate.getTime());
-        //convert Date to String
-//        Date datestart = bill.getBook().getStartDate();
-//        Date dateend = bill.getBook().getEndDate();
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//        String StartDate = formatter.format(datestart);
-//         String EndDate = formatter.format(dateend);
-//        //tinh chenh lech thoi gian giua 2 thoi diem
-//        // Custom date format
-//
-//        Date d1 = null;
-//        Date d2 = null;
-//        try 
-//            d1 = format.parse(StartDate);
-//            d2 = format.parse(EndDate);
-//        } catch (ParseException e) {
-//        }
-//        // Get msec from each, and subtract.
-//        long diff = d2.getTime() - d1.getTime();
-//        long diffHours = diff / (60 * 60 * 1000);
-//        Totalmoney = (diffHours * bill.getBook().getRoom().getroomtype().getprice()) + bill.getBook().getRoom().getservice().getPrices();
-//        bill.setTotalmoney(Totalmoney);
         return bill;
     }
 
@@ -142,6 +135,14 @@ public class BillManage implements ActionBill<Bill,BookingRoom> {
 
     @Override
     public boolean editItem(ArrayList<Bill> items) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public Double TotalMoney(Double priceroomtype,Double priceservice,long daysDiff){
+        return (priceroomtype*daysDiff+priceservice);
+    }
+
+    @Override
+    public Double TotalMoney(ArrayList<Bill> item1, ArrayList<BookingRoom> item2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

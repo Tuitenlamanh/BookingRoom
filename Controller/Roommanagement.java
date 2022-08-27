@@ -70,6 +70,7 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).getroomID().equals(id)){
                 items.remove(i);
+                System.out.println("Deleted succesfully!");
                 return true;
             }
         }
@@ -119,6 +120,7 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
                             if(counttype==item2.size()){
                                 System.out.println("Can't find the ID of Room type!");
                             }
+                            System.out.println("Edit successfully!");
                             break;
                         case 2:
                             System.out.println("Enter ID of service: ");
@@ -137,6 +139,8 @@ public class Roommanagement implements ActionRoom<Room,Roomtype,Service> {
                             if(countser==item2.size()){
                                 System.out.println("Can't fine the ID of Service!");
                             }
+                            System.out.println("Edit successfully!");
+                            break;
                         case 3:
                             check = false;
                             break;

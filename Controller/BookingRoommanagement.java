@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Room> {
 
     @Override
-    public Object AddItem(ArrayList<BookingRoom> item1, ArrayList<Customer> item2, ArrayList<Room> item3) {
+    public BookingRoom AddItem(ArrayList<BookingRoom> item1, ArrayList<Customer> item2, ArrayList<Room> item3) {
         BookingRoom book = new BookingRoom();
         Scanner s = new Scanner(System.in);
         System.out.println("Enter ID booking: ");
@@ -53,7 +53,7 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
                 countroom++;
             }
         }
-        if(countroom==item2.size()){
+        if(countroom==item3.size()){
             System.out.println("Can't find the ID!");
         }
         System.out.println("Enter start date");
@@ -108,6 +108,7 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
                             if(countcus==item2.size()){
                                 System.out.println("Not found customer in the list");
                             }
+                            System.out.println("Edit successfully!");
                             break;
                         case 2:
                             s = new Scanner(System.in);
@@ -123,9 +124,11 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
                                     countser++;
                                 }
                             }
-                            if(countser==item2.size()){
+                            if(countser==item3.size()){
                                 System.out.println("Not found room in the list");
                             }
+                            System.out.println("Edit successfully!");
+                            break;
                         case 3:
                             check = false;
                             break;
@@ -150,6 +153,7 @@ public class BookingRoommanagement implements ActionRoom<BookingRoom,Customer,Ro
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).getBrid().equals(id)){
                 items.remove(i);
+                System.out.println("Deleted succesfully!");
                 return true;
             }
         }
